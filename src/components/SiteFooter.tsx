@@ -41,7 +41,7 @@ export default function SiteFooter() {
             <div className="flex items-center gap-3">
               <BrandMark className="h-14 w-14" />
               <div>
-                <p className="display-heading text-lg leading-tight text-white">
+                <p className="font-display text-lg font-bold leading-tight tracking-tight text-white">
                   Batangas Youth
                   <span className="block">Civic Hub</span>
                 </p>
@@ -72,8 +72,8 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          <div className="w-full max-w-md rounded-2xl bg-white/5 p-6">
-            <h3 className="display-heading text-sm text-white">Stay Updated</h3>
+          <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h3 className="font-display text-sm font-semibold text-white">Stay Updated</h3>
             <p className="mb-4 mt-1 text-sm">
               Announcements, events, and opportunities — straight to your inbox.
             </p>
@@ -84,12 +84,12 @@ export default function SiteFooter() {
         {/* Link columns */}
         <div className="mt-12 grid gap-8 border-t border-white/10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="display-heading mb-4 text-sm text-white">Explore</h3>
-            <ul className="space-y-2.5 text-sm">
+            <h3 className="mb-4 font-display text-sm font-semibold text-white">Explore</h3>
+            <ul className="space-y-2.5 text-[15px]">
               {EXPLORE_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
-                    className="transition-colors hover:text-marigold"
+                    className="transition-colors hover:text-marigold hover:underline hover:underline-offset-4"
                     href={l.href}
                   >
                     {l.label}
@@ -99,12 +99,12 @@ export default function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="display-heading mb-4 text-sm text-white">The City</h3>
-            <ul className="space-y-2.5 text-sm">
+            <h3 className="mb-4 font-display text-sm font-semibold text-white">The City</h3>
+            <ul className="space-y-2.5 text-[15px]">
               {CITY_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
-                    className="transition-colors hover:text-marigold"
+                    className="transition-colors hover:text-marigold hover:underline hover:underline-offset-4"
                     href={l.href}
                   >
                     {l.label}
@@ -114,12 +114,12 @@ export default function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="display-heading mb-4 text-sm text-white">GOVPH</h3>
-            <ul className="space-y-2.5 text-sm">
+            <h3 className="mb-4 font-display text-sm font-semibold text-white">GOVPH</h3>
+            <ul className="space-y-2.5 text-[15px]">
               {GOVPH_LINKS.map((l) => (
                 <li key={l.href}>
                   <a
-                    className="inline-flex items-center gap-1 transition-colors hover:text-marigold"
+                    className="inline-flex items-center gap-1 transition-colors hover:text-marigold hover:underline hover:underline-offset-4"
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -132,8 +132,8 @@ export default function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="display-heading mb-4 text-sm text-white">Visit Us</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="mb-4 font-display text-sm font-semibold text-white">Visit Us</h3>
+            <ul className="space-y-3 text-[15px]">
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-marigold" />
                 City Hall Compound, Brgy. 10, Batangas City, 4200 Batangas
@@ -168,7 +168,7 @@ export default function SiteFooter() {
               className="h-12 w-12 rounded-full border-2 border-navy bg-white object-contain"
             />
             <Image
-              src="/assets/ub-logo.png"
+              src="/assets/ub-logo.webp"
               alt="University of Batangas seal"
               width={48}
               height={48}

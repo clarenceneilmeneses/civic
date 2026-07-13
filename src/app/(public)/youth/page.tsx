@@ -40,7 +40,7 @@ function FeaturedEvent({ event }: { event: CityEvent }) {
   return (
     <Link
       href={`/youth/events/${event.slug}`}
-      className="group relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-2xl shadow-card transition-all hover:-translate-y-0.5 hover:shadow-lift sm:col-span-2 lg:row-span-2 lg:min-h-full"
+      className="group relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-2xl transition-shadow hover:shadow-lift sm:col-span-2 lg:row-span-2 lg:min-h-full"
     >
       {event.cover_image ? (
         <Image
@@ -58,9 +58,9 @@ function FeaturedEvent({ event }: { event: CityEvent }) {
       <div className="relative p-6 text-white sm:p-8">
         <div className="flex flex-wrap items-center gap-2">
           <Tag className="bg-marigold text-navy">Up next</Tag>
-          <Tag colorKey={event.category}>{event.category}</Tag>
+          <Tag className="bg-white/20 text-white">{event.category}</Tag>
         </div>
-        <h2 className="mt-3 max-w-lg font-display text-2xl font-semibold uppercase leading-tight tracking-wide sm:text-3xl">
+        <h2 className="mt-3 max-w-lg font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
           {event.title}
         </h2>
         <div className="mt-3 space-y-1 text-sm text-sky">
@@ -114,6 +114,7 @@ export default async function YouthHubPage({
       <PageHeader
         kicker="For young Batangueños"
         title="Youth Hub"
+        tone="youth"
         lede="Find your next activity, chase a scholarship, or speak up on a city proposal."
       >
         <div className="mt-6 flex flex-wrap gap-3">
@@ -141,7 +142,7 @@ export default async function YouthHubPage({
           >
             <Link
               href="/youth"
-              className={`tag shrink-0 px-4 py-2 text-sm ${!category ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+              className={`tag shrink-0 px-4 py-2 text-sm ${!category ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
             >
               All
             </Link>
@@ -151,9 +152,9 @@ export default async function YouthHubPage({
                 <Link
                   key={c.label}
                   href={`/youth?category=${encodeURIComponent(c.label)}`}
-                  className={`tag shrink-0 gap-1.5 px-4 py-2 text-sm ${active ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+                  className={`tag shrink-0 gap-1.5 px-4 py-2 text-sm ${active ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
                 >
-                  <c.icon className={`h-4 w-4 ${active ? "text-marigold" : "text-orange"}`} />
+                  <c.icon className={`h-4 w-4 ${active ? "text-marigold" : "text-royal"}`} />
                   {c.label}
                 </Link>
               );
@@ -182,10 +183,10 @@ export default async function YouthHubPage({
       </section>
 
       {/* CLOSING BAND */}
-      <section className="bg-cream/70">
+      <section className="bg-cream">
         <div className="container-site flex flex-col items-center gap-4 py-14 text-center">
-          <Users className="h-8 w-8 text-orange" />
-          <h2 className="display-heading text-2xl text-navy">
+          <Users className="h-8 w-8 text-royal" />
+          <h2 className="font-display text-2xl font-bold tracking-tight text-navy">
             Running a youth org?
           </h2>
           <p className="max-w-md text-slate-600">

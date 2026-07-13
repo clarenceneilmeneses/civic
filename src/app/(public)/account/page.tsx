@@ -41,8 +41,8 @@ export default async function AccountPage() {
       </p>
 
       <section className="mt-10" aria-labelledby="my-events">
-        <h2 id="my-events" className="display-heading flex items-center gap-2 text-lg text-navy">
-          <CalendarDays className="h-5 w-5 text-orange" /> My event registrations
+        <h2 id="my-events" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+          <CalendarDays className="h-5 w-5 text-royal" /> My event registrations
         </h2>
         <div className="mt-4 space-y-3">
           {registrations && registrations.length > 0 ? (
@@ -66,7 +66,7 @@ export default async function AccountPage() {
           ) : (
             <p className="card p-5 text-sm text-slate-500">
               You haven't registered for any events yet.{" "}
-              <Link href="/youth" className="font-bold text-azure hover:text-royal">
+              <Link href="/youth" className="font-bold text-royal hover:text-navy">
                 Browse the Youth Hub →
               </Link>
             </p>
@@ -75,8 +75,8 @@ export default async function AccountPage() {
       </section>
 
       <section className="mt-10" aria-labelledby="my-comments">
-        <h2 id="my-comments" className="display-heading flex items-center gap-2 text-lg text-navy">
-          <MessageSquare className="h-5 w-5 text-orange" /> My comments
+        <h2 id="my-comments" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+          <MessageSquare className="h-5 w-5 text-royal" /> My comments
         </h2>
         <div className="mt-4 space-y-3">
           {comments && comments.length > 0 ? (
@@ -87,7 +87,7 @@ export default async function AccountPage() {
                   {p && (
                     <Link
                       href={`/youth/get-involved/${p.slug}`}
-                      className="text-sm font-bold text-azure hover:text-royal"
+                      className="text-sm font-bold text-royal hover:text-navy"
                     >
                       {p.title}
                     </Link>
@@ -98,7 +98,7 @@ export default async function AccountPage() {
                     {c.approved ? (
                       <span className="font-semibold text-green-700">Approved</span>
                     ) : (
-                      <span className="font-semibold text-orange">Pending moderation</span>
+                      <span className="font-semibold text-royal">Pending moderation</span>
                     )}
                   </p>
                 </div>
@@ -107,7 +107,7 @@ export default async function AccountPage() {
           ) : (
             <p className="card p-5 text-sm text-slate-500">
               You haven't commented on any proposals yet.{" "}
-              <Link href="/youth/get-involved" className="font-bold text-azure hover:text-royal">
+              <Link href="/youth/get-involved" className="font-bold text-royal hover:text-navy">
                 See open proposals →
               </Link>
             </p>

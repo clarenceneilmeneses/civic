@@ -87,7 +87,7 @@ export default function AdminSidebar({
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
         <BrandMark className="h-8 w-8" />
-        <span className="display-heading text-sm">Admin</span>
+        <span className="font-display text-sm font-semibold">Admin</span>
       </div>
       {open && (
         <div className="fixed inset-0 z-30 bg-black/40 lg:hidden" onClick={() => setOpen(false)} />
@@ -113,8 +113,8 @@ export default function AdminSidebar({
           <BrandMark className="h-9 w-9 shrink-0" />
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <p className="display-heading text-sm leading-tight">Civic Hub CMS</p>
-              <p className="text-[11px] text-sky">Batangas City</p>
+              <p className="font-display text-sm font-semibold leading-tight">Civic Hub CMS</p>
+              <p className="text-xs text-sky">Batangas City</p>
             </div>
           )}
           <button
@@ -151,7 +151,7 @@ export default function AdminSidebar({
                   "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium",
                   collapsed && "lg:justify-center lg:px-0 lg:py-2.5",
                   active
-                    ? "bg-royal text-white"
+                    ? "bg-white/10 text-white shadow-[inset_3px_0_0_0_#E8762C]"
                     : "text-slate-300 hover:bg-white/10 hover:text-white"
                 )}
               >

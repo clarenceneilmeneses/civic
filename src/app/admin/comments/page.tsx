@@ -74,7 +74,7 @@ export default function AdminCommentsPage() {
 
   return (
     <div>
-      <h1 className="display-heading text-2xl text-navy">Comments Queue</h1>
+      <h1 className="font-display text-2xl font-bold tracking-tight text-navy">Comments Queue</h1>
       <p className="mt-1 text-sm text-slate-500">
         Citizen comments on proposals are hidden until approved here.
       </p>
@@ -84,7 +84,7 @@ export default function AdminCommentsPage() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`tag px-4 py-1.5 text-sm capitalize ${filter === f ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+            className={`tag px-4 py-1.5 text-sm capitalize ${filter === f ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
           >
             {f}
           </button>
@@ -128,7 +128,7 @@ export default function AdminCommentsPage() {
                     On:{" "}
                     <Link
                       href={`/youth/get-involved/${c.proposals.slug}`}
-                      className="font-semibold text-azure hover:text-royal"
+                      className="font-semibold text-royal hover:text-navy"
                     >
                       {c.proposals.title}
                     </Link>

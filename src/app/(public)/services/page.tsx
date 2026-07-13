@@ -50,6 +50,7 @@ export default async function ServicesPage() {
       <PageHeader
         kicker="How can we help?"
         title="City Services"
+        tone="services"
         lede="Tap a service to see the exact steps, fees, and forms — no run-around, no jargon."
       >
         {groups.length > 0 && (
@@ -63,9 +64,9 @@ export default async function ServicesPage() {
                 <a
                   key={name}
                   href={`#${slugify(name)}`}
-                  className="tag shrink-0 gap-1.5 bg-cream px-4 py-2 text-sm text-navy hover:bg-sand"
+                  className="tag shrink-0 gap-1.5 border border-navy/10 bg-white px-4 py-2 text-sm text-navy transition-colors hover:border-orange"
                 >
-                  <Building2 className="h-4 w-4 text-orange" />
+                  <Building2 className="h-4 w-4 text-royal" />
                   {shortDeptName(name)}
                 </a>
               );
@@ -92,11 +93,11 @@ export default async function ServicesPage() {
                     className="scroll-mt-24"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-royal text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal">
                         <Building2 className="h-5 w-5" />
                       </span>
                       <div>
-                        <h2 className="font-display text-lg uppercase tracking-wide text-navy">
+                        <h2 className="font-display text-lg font-bold tracking-tight text-navy">
                           {name}
                         </h2>
                         {dept?.location && (
@@ -117,17 +118,17 @@ export default async function ServicesPage() {
                               <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-slate-500">
                                 {s.fee && (
                                   <span className="inline-flex items-center gap-1.5">
-                                    <Banknote className="h-3.5 w-3.5 text-orange" /> {s.fee}
+                                    <Banknote className="h-3.5 w-3.5 text-royal" /> {s.fee}
                                   </span>
                                 )}
                                 {s.processing_time && (
                                   <span className="inline-flex items-center gap-1.5">
-                                    <Clock className="h-3.5 w-3.5 text-orange" /> {s.processing_time}
+                                    <Clock className="h-3.5 w-3.5 text-royal" /> {s.processing_time}
                                   </span>
                                 )}
                               </div>
                             </div>
-                            <ChevronDown className="h-5 w-5 shrink-0 text-azure transition-transform group-open:rotate-180" />
+                            <ChevronDown className="h-5 w-5 shrink-0 text-royal transition-transform group-open:rotate-180" />
                           </summary>
                           <div className="border-t border-slate-100 px-5 pb-5 pt-4">
                             {s.summary && (
@@ -139,7 +140,7 @@ export default async function ServicesPage() {
                                   <li key={i} className="flex gap-3 text-sm text-slate-700">
                                     <span
                                       aria-hidden="true"
-                                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-royal font-display text-xs font-semibold text-white"
+                                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-royal font-display text-xs font-bold text-white"
                                     >
                                       {i + 1}
                                     </span>
@@ -171,9 +172,9 @@ export default async function ServicesPage() {
       </section>
 
       {/* CLOSING BAND */}
-      <section className="bg-cream/70">
+      <section className="bg-cream">
         <div className="container-site flex flex-col items-center gap-4 py-14 text-center">
-          <h2 className="display-heading text-2xl text-navy">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-navy">
             Need a service that isn&apos;t listed?
           </h2>
           <p className="max-w-md text-slate-600">

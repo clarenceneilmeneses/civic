@@ -32,7 +32,7 @@ export default async function DocumentsPage({
     <div className="container-site py-12">
       <Link
         href="/transparency"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> Back to Transparency
       </Link>
@@ -42,7 +42,7 @@ export default async function DocumentsPage({
       <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label="Filter by category">
         <Link
           href="/transparency/documents"
-          className={`tag px-4 py-1.5 text-sm ${!category ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+          className={`tag px-4 py-1.5 text-sm ${!category ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
         >
           All
         </Link>
@@ -50,7 +50,7 @@ export default async function DocumentsPage({
           <Link
             key={c}
             href={`/transparency/documents?category=${encodeURIComponent(c)}`}
-            className={`tag px-4 py-1.5 text-sm ${category === c ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+            className={`tag px-4 py-1.5 text-sm ${category === c ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
           >
             {c}
           </Link>
@@ -64,12 +64,12 @@ export default async function DocumentsPage({
           <ul className="grid gap-4 md:grid-cols-2">
             {docs.map((d) => (
               <li key={d.id} className="card flex items-start gap-4 p-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-azure/15 text-royal">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal">
                   <FileText className="h-5 w-5" />
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <Tag className="bg-sky text-navy">{d.category}</Tag>
+                    <Tag>{d.category}</Tag>
                     {d.year && (
                       <span className="text-xs font-bold text-slate-500">{d.year}</span>
                     )}
@@ -86,7 +86,7 @@ export default async function DocumentsPage({
                       href={d.file_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm font-bold text-azure hover:text-royal"
+                      className="mt-2 inline-block text-sm font-bold text-royal hover:text-navy"
                     >
                       Download PDF →
                     </a>

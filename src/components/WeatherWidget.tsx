@@ -23,7 +23,7 @@ const MOCK: Weather = {
 export default function WeatherWidget() {
   const w = MOCK;
   return (
-    <div className="card flex items-center gap-4 border border-sky/60 bg-gradient-to-br from-sky/40 to-white p-5">
+    <div className="flex h-full items-center gap-4 rounded-xl border border-sky/60 bg-gradient-to-br from-sky/40 to-white p-5 shadow-card">
       <CloudSun className="h-12 w-12 shrink-0 text-royal" aria-hidden="true" />
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-navy">{w.location}</p>

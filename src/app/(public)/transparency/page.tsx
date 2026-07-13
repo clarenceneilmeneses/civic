@@ -53,6 +53,7 @@ export default async function TransparencyPage({
       <PageHeader
         kicker="Open government"
         title="Transparency & Good Governance"
+        tone="transparency"
         lede="Every ordinance, resolution, and peso — public, searchable, and in plain sight."
       >
         <form
@@ -71,7 +72,7 @@ export default async function TransparencyPage({
             placeholder="Search by title, number, or keyword…"
             className="input flex-1 py-3"
           />
-          <button className="btn bg-marigold px-5 font-bold text-navy hover:bg-orange hover:text-white">
+          <button className="btn-secondary px-5">
             <Search className="h-4 w-4" />
             <span className="hidden sm:inline">Search</span>
           </button>
@@ -79,14 +80,14 @@ export default async function TransparencyPage({
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
             href="/transparency/documents"
-            className="inline-flex items-center gap-2 text-sm font-bold text-azure hover:text-royal"
+            className="inline-flex items-center gap-2 text-sm font-bold text-royal hover:text-navy"
           >
             <FileText className="h-4 w-4" /> Full Disclosure Documents
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
           <Link
             href="/transparency/documents?category=Forms"
-            className="inline-flex items-center gap-2 text-sm font-bold text-azure hover:text-royal"
+            className="inline-flex items-center gap-2 text-sm font-bold text-royal hover:text-navy"
           >
             <Download className="h-4 w-4" /> Downloadable Forms
             <ArrowRight className="h-3.5 w-3.5" />
@@ -100,7 +101,7 @@ export default async function TransparencyPage({
           <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by type">
             <Link
               href={makeHref(1, null)}
-              className={`tag px-4 py-1.5 text-sm ${!kind ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+              className={`tag px-4 py-1.5 text-sm ${!kind ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
             >
               All
             </Link>
@@ -108,7 +109,7 @@ export default async function TransparencyPage({
               <Link
                 key={k}
                 href={makeHref(1, k)}
-                className={`tag px-4 py-1.5 text-sm ${kind === k ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+                className={`tag px-4 py-1.5 text-sm ${kind === k ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
               >
                 {LEGISLATION_KIND_LABELS[k]}s
               </Link>
@@ -118,7 +119,7 @@ export default async function TransparencyPage({
             <p className="mt-4 text-sm text-slate-600">
               Results for <strong>“{q}”</strong>
               {count !== null && ` — ${count} found`} ·{" "}
-              <Link href={makeHref(1, kind ?? null).split("?")[0]} className="font-semibold text-azure hover:text-royal">
+              <Link href={makeHref(1, kind ?? null).split("?")[0]} className="font-semibold text-royal hover:text-navy">
                 clear search
               </Link>
             </p>
@@ -128,7 +129,7 @@ export default async function TransparencyPage({
             {error ? (
               <EmptyState title="Couldn't load legislation" hint="Please refresh the page." />
             ) : items && items.length > 0 ? (
-              <ul className="divide-y divide-slate-100 rounded-xl border border-slate-100 bg-white">
+              <ul className="divide-y divide-slate-100 rounded-2xl border border-navy/10 bg-white">
                 {items.map((l) => (
                   <li
                     key={l.id}
@@ -136,9 +137,7 @@ export default async function TransparencyPage({
                   >
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2 text-xs">
-                        <Tag className="bg-sky text-navy">
-                          {LEGISLATION_KIND_LABELS[l.kind]}
-                        </Tag>
+                        <Tag>{LEGISLATION_KIND_LABELS[l.kind]}</Tag>
                         <span className="font-bold text-slate-500">{l.number}</span>
                         <span className="text-slate-400">
                           {formatDate(l.date_approved)}
@@ -182,10 +181,10 @@ export default async function TransparencyPage({
       </section>
 
       {/* CLOSING BAND — quiet CTA instead of another card */}
-      <section className="bg-cream/70">
+      <section className="bg-cream">
         <div className="container-site flex flex-col items-center gap-4 py-14 text-center">
-          <Scale className="h-8 w-8 text-orange" />
-          <h2 className="display-heading text-2xl text-navy">
+          <Scale className="h-8 w-8 text-royal" />
+          <h2 className="font-display text-2xl font-bold tracking-tight text-navy">
             Can&apos;t find a document?
           </h2>
           <p className="max-w-md text-slate-600">

@@ -82,7 +82,7 @@ function LoginForm() {
     <div className="card w-full max-w-md p-8">
       <div className="flex flex-col items-center text-center">
         <BrandMark className="h-16 w-16" />
-        <h1 className="display-heading mt-4 text-2xl text-navy">
+        <h1 className="mt-4 font-display text-2xl font-bold tracking-tight text-navy">
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -131,14 +131,14 @@ function LoginForm() {
         {mode === "signin" ? (
           <>
             New here?{" "}
-            <button onClick={() => { setMode("signup"); setError(null); }} className="font-bold text-azure hover:text-royal">
+            <button onClick={() => { setMode("signup"); setError(null); }} className="font-bold text-royal hover:text-navy">
               Create a free account
             </button>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <button onClick={() => { setMode("signin"); setError(null); }} className="font-bold text-azure hover:text-royal">
+            <button onClick={() => { setMode("signin"); setError(null); }} className="font-bold text-royal hover:text-navy">
               Sign in
             </button>
           </>

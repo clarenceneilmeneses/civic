@@ -52,7 +52,7 @@ export default function AdminUsersPage() {
 
   return (
     <div>
-      <h1 className="display-heading text-2xl text-navy">Users</h1>
+      <h1 className="font-display text-2xl font-bold tracking-tight text-navy">Users</h1>
       <p className="mt-1 text-sm text-slate-500">
         Registered accounts. <strong>Citizens</strong> can RSVP and comment,{" "}
         <strong>editors</strong> can create draft content, <strong>admins</strong>{" "}
@@ -109,7 +109,7 @@ export default function AdminUsersPage() {
                       ))}
                     </select>
                     {p.id === me && (
-                      <p className="mt-1 text-[11px] text-slate-400">
+                      <p className="mt-1 text-xs text-slate-400">
                         You can't change your own role.
                       </p>
                     )}

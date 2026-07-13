@@ -22,7 +22,7 @@ function FeaturedPost({ post }: { post: Post }) {
   return (
     <Link
       href={`/news/${post.slug}`}
-      className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl shadow-card transition-all hover:-translate-y-0.5 hover:shadow-lift sm:col-span-2"
+      className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl transition-shadow hover:shadow-lift sm:col-span-2"
     >
       {post.cover_image ? (
         <Image
@@ -42,7 +42,7 @@ function FeaturedPost({ post }: { post: Post }) {
           <Tag className="bg-marigold text-navy">Top story</Tag>
           {post.category && <Tag className="bg-white/20 text-white">{post.category}</Tag>}
         </div>
-        <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold uppercase leading-tight tracking-wide sm:text-3xl">
+        <h2 className="mt-3 max-w-xl font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
           {post.title}
         </h2>
         {post.excerpt && (
@@ -105,7 +105,7 @@ export default async function NewsPage({
               <Link
                 key={f.label}
                 href={f.value ? `/news?type=${f.value}` : "/news"}
-                className={`tag px-4 py-2 text-sm ${active ? "bg-royal text-white" : "bg-cream text-navy hover:bg-sand"}`}
+                className={`tag px-4 py-2 text-sm ${active ? "bg-royal text-white" : "border border-navy/10 bg-white text-navy hover:border-orange"}`}
               >
                 {f.label}
               </Link>
@@ -148,7 +148,9 @@ export default async function NewsPage({
       {/* CLOSING BAND — subscribe */}
       <section className="bg-navy text-white">
         <div className="container-site flex flex-col items-center gap-4 py-14 text-center">
-          <h2 className="display-heading text-2xl">Never miss an update</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight">
+            Never miss an update
+          </h2>
           <p className="max-w-md text-sky">
             Get announcements, events, and opportunities straight to your inbox.
           </p>

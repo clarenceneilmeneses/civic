@@ -82,8 +82,8 @@ export default async function SearchPage({
       <div className="mt-8 space-y-10">
         {events.length > 0 && (
           <section>
-            <h2 className="display-heading mb-4 flex items-center gap-2 text-lg text-navy">
-              <CalendarDays className="h-5 w-5 text-orange" /> Events
+            <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+              <CalendarDays className="h-5 w-5 text-royal" /> Events
             </h2>
             <ul className="space-y-3">
               {events.map((e) => (
@@ -104,8 +104,8 @@ export default async function SearchPage({
 
         {posts.length > 0 && (
           <section>
-            <h2 className="display-heading mb-4 flex items-center gap-2 text-lg text-navy">
-              <Newspaper className="h-5 w-5 text-orange" /> News &amp; Announcements
+            <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+              <Newspaper className="h-5 w-5 text-royal" /> News &amp; Announcements
             </h2>
             <ul className="space-y-3">
               {posts.map((p) => (
@@ -126,14 +126,14 @@ export default async function SearchPage({
 
         {legislation.length > 0 && (
           <section>
-            <h2 className="display-heading mb-4 flex items-center gap-2 text-lg text-navy">
-              <Scale className="h-5 w-5 text-orange" /> Legislation
+            <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+              <Scale className="h-5 w-5 text-royal" /> Legislation
             </h2>
             <ul className="space-y-3">
               {legislation.map((l) => (
                 <li key={l.id} className="card p-4">
                   <div className="flex items-center gap-2">
-                    <Tag className="bg-sky text-navy">{LEGISLATION_KIND_LABELS[l.kind]}</Tag>
+                    <Tag>{LEGISLATION_KIND_LABELS[l.kind]}</Tag>
                     <span className="text-xs font-bold text-slate-500">{l.number}</span>
                   </div>
                   <p className="mt-1 font-bold text-navy">{l.title}</p>
@@ -141,7 +141,7 @@ export default async function SearchPage({
                 </li>
               ))}
             </ul>
-            <Link href="/transparency" className="mt-3 inline-block text-sm font-bold text-azure hover:text-royal">
+            <Link href="/transparency" className="mt-3 inline-block text-sm font-bold text-royal hover:text-navy">
               Browse all legislation →
             </Link>
           </section>
@@ -149,20 +149,20 @@ export default async function SearchPage({
 
         {documents.length > 0 && (
           <section>
-            <h2 className="display-heading mb-4 flex items-center gap-2 text-lg text-navy">
-              <FileText className="h-5 w-5 text-orange" /> Documents
+            <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy">
+              <FileText className="h-5 w-5 text-royal" /> Documents
             </h2>
             <ul className="space-y-3">
               {documents.map((d) => (
                 <li key={d.id} className="card p-4">
                   <div className="flex items-center gap-2">
-                    <Tag className="bg-sky text-navy">{d.category}</Tag>
+                    <Tag>{d.category}</Tag>
                     {d.year && <span className="text-xs font-bold text-slate-500">{d.year}</span>}
                   </div>
                   <p className="mt-1 font-bold text-navy">{d.title}</p>
                   {d.description && <p className="text-sm text-slate-600">{d.description}</p>}
                   {d.file_url && (
-                    <a href={d.file_url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm font-bold text-azure hover:text-royal">
+                    <a href={d.file_url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm font-bold text-royal hover:text-navy">
                       Download PDF →
                     </a>
                   )}

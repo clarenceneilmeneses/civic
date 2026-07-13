@@ -79,7 +79,7 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="display-heading text-2xl text-navy">Dashboard</h1>
+      <h1 className="font-display text-2xl font-bold tracking-tight text-navy">Dashboard</h1>
       <p className="mt-1 text-sm text-slate-500">
         Content and activity across the Batangas Youth Civic Hub.
       </p>
@@ -108,7 +108,7 @@ export default async function AdminDashboard() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <section className="card p-5">
-          <h2 className="mb-3 font-display text-lg uppercase tracking-wide text-navy">
+          <h2 className="mb-3 font-display text-lg font-bold tracking-tight text-navy">
             Latest contact messages
           </h2>
           <ul className="divide-y divide-slate-100">
@@ -134,7 +134,7 @@ export default async function AdminDashboard() {
         </section>
 
         <section className="card p-5">
-          <h2 className="mb-3 font-display text-lg uppercase tracking-wide text-navy">
+          <h2 className="mb-3 font-display text-lg font-bold tracking-tight text-navy">
             Latest proposal comments
           </h2>
           <ul className="divide-y divide-slate-100">

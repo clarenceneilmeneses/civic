@@ -34,7 +34,9 @@ export default async function HotlinesPage() {
           >
             <ArrowLeft className="h-4 w-4" /> Back to Contact
           </Link>
-          <h1 className="display-heading text-3xl sm:text-4xl">Emergency Hotlines</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            Emergency Hotlines
+          </h1>
           <p className="mt-3 max-w-2xl text-lg text-white/90">
             Save these numbers. In a life-threatening emergency, call{" "}
             <a href="tel:911" className="font-bold underline">911</a> first.
@@ -49,7 +51,7 @@ export default async function HotlinesPage() {
           <div className="space-y-10">
             {Array.from(groups.entries()).map(([category, list]) => (
               <section key={category} aria-label={category}>
-                <h2 className="display-heading border-b-2 border-brick pb-2 text-lg text-navy">
+                <h2 className="border-b-2 border-brick pb-2 font-display text-lg font-bold tracking-tight text-navy">
                   {category}
                 </h2>
                 <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

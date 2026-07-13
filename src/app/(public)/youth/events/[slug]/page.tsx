@@ -55,13 +55,13 @@ export default async function EventPage({
     <article className="container-site max-w-4xl py-12">
       <Link
         href="/youth"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> Back to Youth Hub
       </Link>
 
       {event.cover_image && (
-        <div className="relative aspect-[16/8] overflow-hidden rounded-2xl bg-sky/30">
+        <div className="relative aspect-[16/8] overflow-hidden rounded-2xl bg-sky/20">
           <Image
             src={event.cover_image}
             alt=""
@@ -77,14 +77,14 @@ export default async function EventPage({
         <Tag colorKey={event.category}>{event.category}</Tag>
         {isPast && <Tag className="bg-slate-200 text-slate-600">Past event</Tag>}
       </div>
-      <h1 className="mt-3 font-display text-3xl font-semibold uppercase leading-tight tracking-wide text-navy sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
         {event.title}
       </h1>
       {event.summary && (
         <p className="mt-3 text-lg text-slate-600">{event.summary}</p>
       )}
 
-      <div className="card mt-6 grid gap-4 border border-sky/50 p-5 sm:grid-cols-2">
+      <div className="card mt-6 grid gap-4 p-5 sm:grid-cols-2">
         <p className="flex items-start gap-2.5 text-sm">
           <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-royal" />
           <span>

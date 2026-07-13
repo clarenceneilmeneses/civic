@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Oswald, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 
-const display = Oswald({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 

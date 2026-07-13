@@ -55,7 +55,7 @@ export default function UploadField({
               href={value}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-azure hover:text-royal"
+              className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-royal hover:text-navy"
             >
               <FileText className="h-4 w-4" /> View uploaded file
             </a>

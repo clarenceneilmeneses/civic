@@ -57,7 +57,7 @@ export default async function OfficialsPage() {
         ) : (
           Array.from(groups.entries()).map(([group, list]) => (
             <section key={group} aria-label={group}>
-              <h2 className="display-heading border-b-2 border-marigold pb-2 text-lg text-navy">
+              <h2 className="border-b-2 border-marigold pb-2 font-display text-lg font-bold tracking-tight text-navy">
                 {group}
               </h2>
               <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

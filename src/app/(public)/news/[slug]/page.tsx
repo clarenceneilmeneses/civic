@@ -54,7 +54,7 @@ export default async function ArticlePage({
     <article className="container-site max-w-4xl py-12">
       <Link
         href="/news"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> Back to news
       </Link>
@@ -64,7 +64,7 @@ export default async function ArticlePage({
         </Tag>
         {post.category && <Tag>{post.category}</Tag>}
       </div>
-      <h1 className="mt-3 font-display text-3xl font-semibold uppercase leading-tight tracking-wide text-navy sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
         {post.title}
       </h1>
       <p className="mt-3 text-sm font-medium text-slate-500">
@@ -95,7 +95,7 @@ export default async function ArticlePage({
 
       {related && related.length > 0 && (
         <aside className="mt-12 border-t border-slate-200 pt-8">
-          <h2 className="display-heading mb-4 text-lg text-navy">
+          <h2 className="mb-4 font-display text-lg font-bold tracking-tight text-navy">
             More from the newsroom
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2">

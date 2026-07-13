@@ -187,10 +187,10 @@ export default function EntityForm({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link href={listHref} className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal">
+      <Link href={listHref} className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy">
         <ArrowLeft className="h-4 w-4" /> Back to list
       </Link>
-      <h1 className="display-heading text-2xl text-navy">
+      <h1 className="font-display text-2xl font-bold tracking-tight text-navy">
         {isNew ? `New ${title}` : `Edit ${title}`}
       </h1>
 

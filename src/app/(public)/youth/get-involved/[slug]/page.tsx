@@ -47,18 +47,14 @@ export default async function ProposalPage({
     <article className="container-site max-w-4xl py-12">
       <Link
         href="/youth/get-involved"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> All proposals
       </Link>
 
       <div className="flex flex-wrap items-center gap-2">
         <Tag
-          className={
-            commentsOpen
-              ? "bg-marigold/80 text-navy"
-              : "bg-slate-200 text-slate-600"
-          }
+          className={commentsOpen ? "bg-marigold/50 text-navy" : undefined}
         >
           {commentsOpen ? "Open for comments" : "Comments closed"}
         </Tag>
@@ -69,7 +65,7 @@ export default async function ProposalPage({
         )}
       </div>
 
-      <h1 className="mt-3 font-display text-3xl font-semibold uppercase leading-tight tracking-wide text-navy sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
         {proposal.title}
       </h1>
       {proposal.summary && (

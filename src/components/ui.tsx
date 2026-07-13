@@ -14,7 +14,7 @@ export function SectionHeading({
   return (
     <Tag
       className={cn(
-        "display-heading text-2xl font-semibold text-navy sm:text-3xl",
+        "font-display text-2xl font-bold tracking-tight text-navy sm:text-3xl",
         className
       )}
     >
@@ -23,41 +23,37 @@ export function SectionHeading({
   );
 }
 
-export function SectionKicker({ children }: { children: React.ReactNode }) {
+export function SectionKicker({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-orange">
+    <p className={cn("mb-2 text-[13px] font-semibold text-royal", className)}>
       {children}
     </p>
   );
 }
 
-const TAG_COLORS: Record<string, string> = {
-  Sports: "bg-sky text-navy",
-  Arts: "bg-marigold/70 text-navy",
-  Leadership: "bg-royal text-white",
-  Volunteering: "bg-orange/90 text-white",
-  Scholarships: "bg-navy text-white",
-  "SK Programs": "bg-azure text-white",
-  news: "bg-sky text-navy",
-  announcement: "bg-marigold/70 text-navy",
-};
-
+// One neutral tag style everywhere; accents are opted into per-usage via
+// className (e.g. "bg-marigold/50 text-navy" for highlights).
 export function Tag({
   children,
-  colorKey,
+  colorKey: _colorKey,
   className,
 }: {
   children: React.ReactNode;
   colorKey?: string;
   className?: string;
 }) {
+  // Only apply the neutral surface when the caller doesn't bring its own —
+  // cn() is plain clsx, so conflicting bg-* utilities would be unpredictable.
+  const hasOwnSurface = /(^|\s)bg-/.test(className ?? "");
   return (
     <span
-      className={cn(
-        "tag",
-        (colorKey && TAG_COLORS[colorKey]) || "bg-cream text-navy",
-        className
-      )}
+      className={cn("tag", !hasOwnSurface && "bg-navy/5 text-navy", className)}
     >
       {children}
     </span>

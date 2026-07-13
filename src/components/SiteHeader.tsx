@@ -110,15 +110,15 @@ export default function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-navy/20 bg-royal text-white shadow-md">
+    <header className="sticky top-0 z-40 border-b border-navy/10 bg-white text-navy">
       <div className="container-site flex h-16 items-center gap-3">
         <Link href="/" className="flex min-w-0 items-center gap-2.5">
-          <BrandMark className="h-10 w-10 shrink-0 drop-shadow-sm" />
+          <BrandMark className="h-10 w-10 shrink-0" />
           <span className="hidden flex-col leading-tight min-[380px]:flex">
-            <span className="display-heading text-[15px] font-semibold">
+            <span className="font-display text-sm font-semibold">
               Batangas Youth Civic Hub
             </span>
-            <span className="text-[11px] text-sky">
+            <span className="hidden text-xs text-slate-500 lg:block">
               City Government of Batangas
             </span>
           </span>
@@ -131,8 +131,8 @@ export default function SiteHeader() {
             aria-label="Home"
             title="Home"
             className={cn(
-              "rounded-lg p-2.5 hover:bg-navy/50",
-              pathname === "/" && "bg-navy/60"
+              "rounded-lg p-2.5 hover:bg-sky/20",
+              pathname === "/" && "bg-sky/25"
             )}
           >
             <Home className="h-4 w-4" />
@@ -142,9 +142,9 @@ export default function SiteHeader() {
               <div key={item.label} className="relative" ref={dropdownRef}>
                 <button
                   className={cn(
-                    "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium hover:bg-navy/50",
+                    "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20",
                     item.activePrefixes?.some((p) => pathname.startsWith(p)) &&
-                      "bg-navy/60"
+                      "underline decoration-orange decoration-2 underline-offset-8"
                   )}
                   aria-expanded={dropdownOpen}
                   onClick={() => setDropdownOpen((v) => !v)}
@@ -153,12 +153,12 @@ export default function SiteHeader() {
                   <ChevronDown className="h-4 w-4" />
                 </button>
                 {dropdownOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-52 overflow-hidden rounded-xl bg-white py-1 text-navy shadow-lift">
+                  <div className="absolute right-0 top-full mt-1 w-52 overflow-hidden rounded-2xl border border-navy/10 bg-white py-1 text-navy shadow-lift">
                     {item.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
-                        className="block px-4 py-2.5 text-sm font-medium hover:bg-sky/40"
+                        className="block px-4 py-2.5 text-sm font-medium hover:bg-sky/20"
                       >
                         {c.label}
                       </Link>
@@ -171,10 +171,11 @@ export default function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-lg px-3 py-2 text-sm font-medium hover:bg-navy/50",
+                  "rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20",
                   (item.href === "/"
                     ? pathname === "/"
-                    : pathname.startsWith(item.href)) && "bg-navy/60"
+                    : pathname.startsWith(item.href)) &&
+                    "underline decoration-orange decoration-2 underline-offset-8"
                 )}
               >
                 {item.label}
@@ -187,7 +188,7 @@ export default function SiteHeader() {
         <div className="ml-auto flex items-center gap-1 lg:ml-2">
           <button
             aria-label="Search"
-            className="rounded-lg p-2 hover:bg-navy/50"
+            className="rounded-lg p-2 hover:bg-sky/20"
             onClick={() => setSearchOpen((v) => !v)}
           >
             <Search className="h-5 w-5" />
@@ -197,14 +198,14 @@ export default function SiteHeader() {
               {(role === "admin" || role === "editor") && (
                 <Link
                   href="/admin"
-                  className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium hover:bg-navy/50"
+                  className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20"
                 >
                   <Shield className="h-4 w-4" /> Admin
                 </Link>
               )}
               <Link
                 href="/account"
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium hover:bg-navy/50"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20"
                 title={userEmail}
               >
                 <User className="h-4 w-4" /> Account
@@ -212,7 +213,7 @@ export default function SiteHeader() {
               <button
                 onClick={signOut}
                 aria-label="Sign out"
-                className="rounded-lg p-2 hover:bg-navy/50"
+                className="rounded-lg p-2 hover:bg-sky/20"
               >
                 <LogOut className="h-4 w-4" />
               </button>
@@ -220,14 +221,14 @@ export default function SiteHeader() {
           ) : (
             <Link
               href="/login"
-              className="hidden rounded-lg bg-marigold px-4 py-2 text-sm font-bold text-navy hover:bg-orange hover:text-white sm:block"
+              className="hidden rounded-lg bg-royal px-4 py-2 text-sm font-semibold text-white hover:bg-navy sm:block"
             >
               Sign in
             </Link>
           )}
           <button
             aria-label="Open menu"
-            className="rounded-lg p-2 hover:bg-navy/50 lg:hidden"
+            className="rounded-lg p-2 hover:bg-sky/20 lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -237,7 +238,7 @@ export default function SiteHeader() {
 
       {/* Search bar */}
       {searchOpen && (
-        <div className="border-t border-navy/40 bg-navy/95">
+        <div className="border-t border-navy/10 bg-white">
           <form onSubmit={submitSearch} className="container-site flex gap-2 py-3">
             <input
               autoFocus
@@ -247,57 +248,55 @@ export default function SiteHeader() {
               className="input flex-1"
               aria-label="Search the site"
             />
-            <button className="btn bg-marigold font-bold text-navy hover:bg-orange hover:text-white">
-              Search
-            </button>
+            <button className="btn-secondary">Search</button>
           </form>
         </div>
       )}
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="border-t border-navy/40 bg-royal lg:hidden" aria-label="Mobile">
+        <nav className="border-t border-navy/10 bg-white lg:hidden" aria-label="Mobile">
           <div className="container-site flex flex-col py-2">
-            <Link href="/" className="flex items-center gap-2 rounded-lg px-3 py-2.5 font-medium hover:bg-navy/50">
+            <Link href="/" className="flex items-center gap-2 rounded-lg px-3 py-2.5 font-medium hover:bg-sky/20">
               <Home className="h-4 w-4" /> Home
             </Link>
             {NAV.flatMap((item) =>
               item.children
                 ? [
-                    <span key={item.label} className="px-3 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-sky">
+                    <span key={item.label} className="px-3 pb-1 pt-3 text-xs font-semibold text-royal">
                       {item.label}
                     </span>,
                     ...item.children.map((c) => (
-                      <Link key={c.href} href={c.href} className="rounded-lg px-3 py-2.5 font-medium hover:bg-navy/50">
+                      <Link key={c.href} href={c.href} className="rounded-lg px-3 py-2.5 font-medium hover:bg-sky/20">
                         {c.label}
                       </Link>
                     )),
                   ]
                 : [
-                    <Link key={item.href} href={item.href} className="rounded-lg px-3 py-2.5 font-medium hover:bg-navy/50">
+                    <Link key={item.href} href={item.href} className="rounded-lg px-3 py-2.5 font-medium hover:bg-sky/20">
                       {item.label}
                     </Link>,
                   ]
             )}
-            <div className="mt-2 border-t border-navy/40 pt-2 pb-3">
+            <div className="mt-2 border-t border-navy/10 pt-2 pb-3">
               {userEmail ? (
                 <div className="flex flex-col">
                   {(role === "admin" || role === "editor") && (
-                    <Link href="/admin" className="rounded-lg px-3 py-2.5 font-medium hover:bg-navy/50">
+                    <Link href="/admin" className="rounded-lg px-3 py-2.5 font-medium hover:bg-sky/20">
                       Admin dashboard
                     </Link>
                   )}
-                  <Link href="/account" className="rounded-lg px-3 py-2.5 font-medium hover:bg-navy/50">
+                  <Link href="/account" className="rounded-lg px-3 py-2.5 font-medium hover:bg-sky/20">
                     My account
                   </Link>
-                  <button onClick={signOut} className="rounded-lg px-3 py-2.5 text-left font-medium hover:bg-navy/50">
+                  <button onClick={signOut} className="rounded-lg px-3 py-2.5 text-left font-medium hover:bg-sky/20">
                     Sign out
                   </button>
                 </div>
               ) : (
                 <Link
                   href="/login"
-                  className="mx-3 block rounded-lg bg-marigold px-4 py-2.5 text-center font-bold text-navy"
+                  className="mx-3 block rounded-lg bg-royal px-4 py-2.5 text-center font-semibold text-white"
                 >
                   Sign in / Register
                 </Link>

@@ -46,7 +46,7 @@ export default function AdminMessagesPage() {
 
   return (
     <div>
-      <h1 className="display-heading text-2xl text-navy">Contact Messages</h1>
+      <h1 className="font-display text-2xl font-bold tracking-tight text-navy">Contact Messages</h1>
       <p className="mt-1 text-sm text-slate-500">
         Submissions from the public contact form. Click a message to read it.
       </p>

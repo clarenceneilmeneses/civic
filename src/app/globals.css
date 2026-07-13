@@ -8,6 +8,27 @@
   }
   body {
     @apply bg-white text-slate-800 antialiased;
+    line-height: 1.6;
+  }
+  /* Editorial type scale — headings are sentence case, tight-tracked
+     Bricolage Grotesque. Utilities on individual headings still win. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-bold tracking-tight;
+  }
+  h1 {
+    font-size: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.35;
   }
   ::selection {
     @apply bg-marigold/60 text-navy;
@@ -18,29 +39,27 @@
 }
 
 @layer components {
-  .display-heading {
-    @apply font-display uppercase tracking-[0.12em];
-  }
   .container-site {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
   }
+  /* Default card is flat: shadow appears only on hover / floating UI. */
   .card {
-    @apply rounded-xl bg-white shadow-card;
+    @apply rounded-2xl border border-navy/10 bg-white;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-primary {
-    @apply btn bg-orange text-white hover:bg-brick;
+    @apply btn bg-orange text-white hover:bg-orange/90;
   }
   .btn-secondary {
     @apply btn bg-royal text-white hover:bg-navy;
   }
   .btn-outline {
-    @apply btn border border-slate-300 bg-white text-navy hover:border-azure hover:text-royal;
+    @apply btn border border-navy/20 bg-white text-navy hover:border-royal hover:text-royal;
   }
   .btn-ghost {
-    @apply btn text-royal hover:bg-sky/40;
+    @apply btn text-royal hover:bg-sky/20;
   }
   .input {
     @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-azure focus:outline-none focus:ring-2 focus:ring-azure/40;
@@ -54,19 +73,6 @@
 }
 
 @layer utilities {
-  /* Full-bleed showcase bands with a simple scroll-parallax effect.
-     background-attachment: fixed is unreliable on iOS, so mobile falls back
-     to a normal cover background. */
-  .parallax {
-    background-size: cover;
-    background-position: center;
-  }
-  @media (min-width: 768px) {
-    .parallax {
-      background-attachment: fixed;
-    }
-  }
-
   /* Scrollable but without a visible scrollbar */
   .no-scrollbar {
     scrollbar-width: none;
@@ -78,14 +84,15 @@
 
   /* Gentle vertical bob for decorative elements */
   .animate-float {
-    animation: float 5s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
   }
 
   /* Infinite horizontal marquee (content must be duplicated once) */
   .ticker-track {
-    animation: ticker 35s linear infinite;
+    animation: ticker 45s linear infinite;
   }
-  .ticker-track:hover {
+  .ticker-track:hover,
+  .ticker-track:focus-within {
     animation-play-state: paused;
   }
 
@@ -139,13 +146,13 @@
   margin-top: 0.9em;
 }
 .prose-civic h2 {
-  @apply mt-8 font-display text-2xl uppercase tracking-wide text-navy;
+  @apply mt-8 font-display text-2xl font-bold tracking-tight text-navy;
 }
 .prose-civic h3 {
   @apply mt-6 text-lg font-bold text-navy;
 }
 .prose-civic a {
-  @apply font-medium text-azure underline underline-offset-2 hover:text-royal;
+  @apply font-medium text-royal underline underline-offset-2 hover:text-navy;
 }
 .prose-civic ul {
   @apply list-disc pl-6;
@@ -160,7 +167,7 @@
   @apply border-l-4 border-marigold bg-cream/60 px-4 py-2 italic;
 }
 .prose-civic img {
-  @apply my-4 rounded-xl;
+  @apply my-4 rounded-2xl;
   max-width: 100%;
   height: auto;
 }

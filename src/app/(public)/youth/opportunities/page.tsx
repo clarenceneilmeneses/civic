@@ -33,7 +33,7 @@ export default async function OpportunitiesPage() {
     <div className="container-site py-12">
       <Link
         href="/youth"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> Back to Youth Hub
       </Link>
@@ -44,7 +44,7 @@ export default async function OpportunitiesPage() {
         city scholarship programs and youth opportunities.
       </p>
 
-      <h2 className="display-heading mt-10 text-lg text-navy">
+      <h2 className="mt-10 font-display text-lg font-bold tracking-tight text-navy">
         Scholarship events &amp; deadlines
       </h2>
       <div className="mt-4">
@@ -62,14 +62,14 @@ export default async function OpportunitiesPage() {
         )}
       </div>
 
-      <h2 className="display-heading mt-12 text-lg text-navy">
+      <h2 className="mt-12 font-display text-lg font-bold tracking-tight text-navy">
         Application forms
       </h2>
       {forms && forms.length > 0 ? (
         <ul className="mt-4 grid gap-4 sm:grid-cols-2">
           {forms.map((f) => (
             <li key={f.id} className="card flex items-start gap-4 p-5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-marigold/40 text-navy">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal">
                 <GraduationCap className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
@@ -83,7 +83,7 @@ export default async function OpportunitiesPage() {
                     href={f.file_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-block text-sm font-bold text-azure hover:text-royal"
+                    className="mt-2 inline-block text-sm font-bold text-royal hover:text-navy"
                   >
                     Download PDF →
                   </a>

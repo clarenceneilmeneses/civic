@@ -29,7 +29,7 @@ export default function ContactForm() {
 
   if (state === "done") {
     return (
-      <div className="card border border-azure/40 bg-sky/20 p-8 text-center">
+      <div className="card bg-sky/20 p-8 text-center">
         <p className="text-lg font-bold text-navy">Message sent — salamat!</p>
         <p className="mt-1 text-sm text-slate-600">
           Your message has been received by the city. Expect a reply at the

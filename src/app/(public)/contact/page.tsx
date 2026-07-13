@@ -24,6 +24,7 @@ export default async function ContactPage() {
       <PageHeader
         kicker="We're listening"
         title="Contact the City"
+        tone="contact"
         lede="Messages go straight to the city's public assistance desk — expect a reply within 3 working days."
       />
 
@@ -32,9 +33,9 @@ export default async function ContactPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Link
               href="/contact/hotlines"
-              className="card group flex items-center gap-4 border border-brick/20 p-5 transition-all hover:-translate-y-0.5 hover:shadow-lift"
+              className="card group flex items-center gap-4 border-brick/20 p-5 transition-shadow hover:shadow-lift"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brick text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brick text-white">
                 <PhoneCall className="h-5 w-5" />
               </span>
               <span className="flex-1">
@@ -48,7 +49,7 @@ export default async function ContactPage() {
               <ArrowRight className="h-5 w-5 shrink-0 text-brick" />
             </Link>
             <div className="card flex items-center gap-4 p-5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-royal text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal">
                 <Landmark className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1 text-sm">

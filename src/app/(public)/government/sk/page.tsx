@@ -40,7 +40,7 @@ export default async function SkPage() {
       />
 
       <div className="container-site py-10">
-        <h2 className="display-heading border-b-2 border-marigold pb-2 text-lg text-navy">
+        <h2 className="border-b-2 border-marigold pb-2 font-display text-lg font-bold tracking-tight text-navy">
           Federation Leadership
         </h2>
         {skOfficials && skOfficials.length > 0 ? (
@@ -70,7 +70,7 @@ export default async function SkPage() {
         )}
 
         <div className="mt-12 flex flex-wrap items-end justify-between gap-4">
-          <h2 className="display-heading border-b-2 border-marigold pb-2 text-lg text-navy">
+          <h2 className="border-b-2 border-marigold pb-2 font-display text-lg font-bold tracking-tight text-navy">
             SK Programs
           </h2>
           <Link href="/youth?category=SK%20Programs" className="btn-outline">
@@ -89,8 +89,8 @@ export default async function SkPage() {
           </div>
         )}
 
-        <div className="card mt-12 border border-marigold/60 bg-gradient-to-br from-sand/50 to-white p-7">
-          <h2 className="font-display text-xl uppercase tracking-wide text-navy">
+        <div className="mt-12 rounded-2xl border border-navy/10 bg-cream p-7">
+          <h2 className="font-display text-xl font-bold tracking-tight text-navy">
             Want your org recognized?
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-slate-600">

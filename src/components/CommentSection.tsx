@@ -86,9 +86,9 @@ export default function CommentSection({
     <section aria-labelledby="comments-heading" className="mt-10">
       <h2
         id="comments-heading"
-        className="display-heading flex items-center gap-2 text-lg text-navy"
+        className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-navy"
       >
-        <MessageSquare className="h-5 w-5 text-orange" /> Public comments
+        <MessageSquare className="h-5 w-5 text-royal" /> Public comments
       </h2>
 
       {commentsOpen ? (
@@ -147,7 +147,7 @@ export default function CommentSection({
             return (
               <article
                 key={c.id}
-                className={`card p-5 ${isMinePending ? "border border-dashed border-marigold" : ""}`}
+                className={`card p-5 ${isMinePending ? "border-dashed border-marigold" : ""}`}
               >
                 <div className="flex items-center gap-3">
                   <InitialsAvatar name={name} className="h-9 w-9 text-sm" />
@@ -156,7 +156,7 @@ export default function CommentSection({
                     <p className="text-xs text-slate-500">
                       {formatDateTime(c.created_at)}
                       {isMinePending && (
-                        <span className="ml-2 font-semibold text-orange">
+                        <span className="ml-2 font-semibold text-royal">
                           · Pending approval (visible only to you)
                         </span>
                       )}

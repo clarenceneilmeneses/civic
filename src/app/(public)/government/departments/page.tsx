@@ -33,7 +33,7 @@ export default async function DepartmentsPage() {
               <li key={d.id} className="card p-6">
                 <h2 className="text-lg font-bold text-navy">{d.name}</h2>
                 {d.head_name && (
-                  <p className="mt-0.5 text-sm font-semibold text-orange">
+                  <p className="mt-0.5 text-sm font-semibold text-royal">
                     {d.head_name}
                   </p>
                 )}

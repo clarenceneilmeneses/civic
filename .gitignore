@@ -11,3 +11,6 @@ next-env.d.ts
 screencapture-*.pdf
 /batangas-seal.png
 /ub-logo.png
+
+# raw image sources — processed copies live in public/assets
+/images/

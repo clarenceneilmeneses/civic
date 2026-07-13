@@ -24,7 +24,7 @@ export default async function GetInvolvedPage() {
     <div className="container-site py-12">
       <Link
         href="/youth"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azure hover:text-royal"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-royal hover:text-navy"
       >
         <ArrowLeft className="h-4 w-4" /> Back to Youth Hub
       </Link>
@@ -50,8 +50,8 @@ export default async function GetInvolvedPage() {
                 <Tag
                   className={
                     p.proposal_status === "open"
-                      ? "bg-marigold/80 text-navy"
-                      : "bg-slate-200 text-slate-600"
+                      ? "bg-marigold/50 text-navy"
+                      : undefined
                   }
                 >
                   {p.proposal_status === "open"
@@ -70,7 +70,7 @@ export default async function GetInvolvedPage() {
               {p.summary && (
                 <p className="mt-1 text-sm text-slate-600">{p.summary}</p>
               )}
-              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-orange">
+              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-royal">
                 <MessageSquare className="h-4 w-4" /> Read &amp; comment{" "}
                 <ArrowRight className="h-4 w-4" />
               </span>

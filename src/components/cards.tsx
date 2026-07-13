@@ -4,12 +4,14 @@ import { CalendarDays, MapPin, Users } from "lucide-react";
 import type { CityEvent, Post } from "@/lib/database.types";
 import { formatDate, formatDateRange } from "@/lib/utils";
 import { Tag } from "./ui";
+import BrandMark from "./BrandMark";
+import StreetPattern from "./StreetPattern";
 
 export function PostCard({ post }: { post: Post }) {
   return (
     <article className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <Link href={`/news/${post.slug}`} className="flex h-full flex-col">
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/30">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/20">
           {post.cover_image ? (
             <Image
               src={post.cover_image}
@@ -19,8 +21,9 @@ export function PostCard({ post }: { post: Post }) {
               className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-navy/40">
-              <span className="display-heading text-lg">Batangas City</span>
+            <div className="relative flex h-full items-center justify-center">
+              <StreetPattern opacity={0.4} />
+              <BrandMark className="relative h-12 w-12" title="" />
             </div>
           )}
         </div>
@@ -51,7 +54,7 @@ export function EventCard({ event }: { event: CityEvent }) {
   return (
     <article className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <Link href={`/youth/events/${event.slug}`} className="flex h-full flex-col">
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/30">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/20">
           {event.cover_image ? (
             <Image
               src={event.cover_image}
@@ -65,11 +68,11 @@ export function EventCard({ event }: { event: CityEvent }) {
               <CalendarDays className="h-10 w-10" />
             </div>
           )}
-          <div className="absolute left-3 top-3 rounded-xl bg-white/95 px-3 py-1.5 text-center shadow-card">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-brick">
+          <div className="absolute left-3 top-3 rounded-lg border border-navy/10 bg-white/95 px-3 py-1.5 text-center">
+            <p className="text-xs font-semibold text-royal">
               {d.toLocaleDateString("en-PH", { month: "short" })}
             </p>
-            <p className="-mt-0.5 font-display text-xl font-semibold text-navy">
+            <p className="-mt-0.5 font-display text-xl font-bold text-navy">
               {d.getDate()}
             </p>
           </div>

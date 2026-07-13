@@ -3,7 +3,6 @@ import Image from "next/image";
 import {
   ArrowRight,
   CalendarDays,
-  Check,
   FileText,
   GraduationCap,
   HeartHandshake,
@@ -24,38 +23,30 @@ import { PostCard, EventCard } from "@/components/cards";
 import { SectionHeading, SectionKicker, EmptyState } from "@/components/ui";
 import { formatDate } from "@/lib/utils";
 
-// Placeholder showcase photo — swap for real Batangas City photography by
-// dropping a file in public/assets and changing this URL.
-const SHOWCASE_IMAGE = "https://picsum.photos/seed/batangasyouth/1920/1080";
-
 const QUICK_ACTIONS = [
   {
     title: "Find an Event",
     desc: "Youth activities & scholarships",
     href: "/youth",
     icon: CalendarDays,
-    color: "bg-azure",
   },
   {
     title: "Get a Form",
     desc: "Downloadable application forms",
     href: "/transparency/documents?category=Forms",
     icon: FileText,
-    color: "bg-orange",
   },
   {
     title: "Read Ordinances",
     desc: "City legislation & issuances",
     href: "/transparency",
     icon: Scale,
-    color: "bg-royal",
   },
   {
     title: "Emergency Hotlines",
     desc: "Police, fire, medical, disaster",
     href: "/contact/hotlines",
     icon: PhoneCall,
-    color: "bg-brick",
   },
 ];
 
@@ -119,23 +110,17 @@ export default async function HomePage() {
     { value: "24/7", label: "emergency hotlines" },
   ];
 
+  const nextEvent = events?.[0] ?? null;
+
   return (
     <>
       {/* HERO — clean map-poster style: white canvas + faint street lines */}
       <section className="relative overflow-hidden bg-white">
-        <StreetPattern opacity={0.5} />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-28 -top-28 h-96 w-96 rounded-full bg-sky/50 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 rounded-full bg-marigold/30 blur-3xl"
-        />
+        <StreetPattern opacity={0.35} />
         <div className="container-site relative grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             {/* Official partnership badge */}
-            <div className="inline-flex flex-wrap items-center gap-3 rounded-full bg-white py-1.5 pl-1.5 pr-5 shadow-card">
+            <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-navy/10 bg-white py-1.5 pl-1.5 pr-5">
               <span className="flex -space-x-1.5">
                 <Image
                   src="/assets/batangas-seal.png"
@@ -145,7 +130,7 @@ export default async function HomePage() {
                   className="h-9 w-9 rounded-full border-2 border-white bg-white object-contain"
                 />
                 <Image
-                  src="/assets/ub-logo.png"
+                  src="/assets/ub-logo.webp"
                   alt="University of Batangas seal"
                   width={36}
                   height={36}
@@ -154,13 +139,13 @@ export default async function HomePage() {
               </span>
               <span className="text-xs font-semibold leading-tight text-navy">
                 City Government of Batangas
-                <span className="block text-[10px] font-medium text-slate-500">
+                <span className="block text-xs font-medium text-slate-500">
                   in partnership with the University of Batangas
                 </span>
               </span>
             </div>
 
-            <h1 className="display-heading mt-6 max-w-2xl text-4xl leading-tight text-navy sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 max-w-2xl font-display font-bold tracking-tight text-navy">
               Your city, made{" "}
               <span className="relative inline-block text-orange">
                 simple
@@ -204,7 +189,7 @@ export default async function HomePage() {
                   <dt className="order-2 text-xs font-medium text-slate-500">
                     {s.label}
                   </dt>
-                  <dd className="order-1 font-display text-4xl font-semibold text-navy">
+                  <dd className="order-1 font-display text-4xl font-bold tracking-tight text-navy">
                     {s.value}
                   </dd>
                 </div>
@@ -212,52 +197,27 @@ export default async function HomePage() {
             </dl>
           </div>
 
-          {/* Brand pin with floating activity chips — decorative, desktop only */}
+          {/* Brand pin — static, with one real floating chip. Desktop only. */}
           <div className="relative hidden items-center justify-center lg:flex">
-            <BrandMark
-              className="animate-float h-80 w-80 drop-shadow-xl"
-              title=""
-            />
-            <div aria-hidden="true">
+            <BrandMark className="h-80 w-80 drop-shadow-xl" title="" />
+            {nextEvent && (
               <div
-                className="animate-float absolute -left-6 top-6 flex -rotate-3 items-center gap-2.5 rounded-xl bg-white px-4 py-3 shadow-lift"
-                style={{ animationDelay: "-1.5s" }}
+                aria-hidden="true"
+                className="animate-float absolute -left-6 top-8 flex items-center gap-2.5 rounded-2xl border border-navy/10 bg-white px-4 py-3 shadow-lift"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-azure text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky/30 text-royal">
                   <CalendarDays className="h-4 w-4" />
                 </span>
-                <span className="max-w-[180px]">
+                <span className="max-w-[190px]">
                   <span className="block truncate text-xs font-bold text-navy">
-                    {events?.[0]?.title ?? "Youth Leaders Bootcamp"}
+                    {nextEvent.title}
                   </span>
-                  <span className="block text-[10px] font-medium text-slate-500">
-                    {events?.[0]
-                      ? formatDate(events[0].starts_at)
-                      : "Happening soon"}
+                  <span className="block text-xs font-medium text-slate-500">
+                    {formatDate(nextEvent.starts_at)}
                   </span>
                 </span>
               </div>
-              <div
-                className="animate-float absolute -right-2 top-1/3 flex rotate-2 items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lift"
-                style={{ animationDelay: "-3s" }}
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-green-500 text-white">
-                  <Check className="h-4 w-4" />
-                </span>
-                <span className="text-xs font-bold text-navy">
-                  You&apos;re registered!
-                </span>
-              </div>
-              <div
-                className="animate-float absolute -left-2 bottom-8 flex rotate-1 items-center gap-2.5 rounded-xl bg-navy px-4 py-3 text-white shadow-lift"
-                style={{ animationDelay: "-4.5s" }}
-              >
-                <GraduationCap className="h-5 w-5 text-marigold" />
-                <span className="text-xs font-bold">
-                  Scholarship applications open
-                </span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -268,11 +228,9 @@ export default async function HomePage() {
               <li key={a.title}>
                 <Link
                   href={a.href}
-                  className="card group flex h-full items-start gap-4 p-5 transition-all hover:-translate-y-0.5 hover:shadow-lift"
+                  className="card group flex h-full items-start gap-4 p-5 transition-shadow hover:shadow-lift"
                 >
-                  <span
-                    className={`${a.color} flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white`}
-                  >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal transition-colors group-hover:bg-orange group-hover:text-white">
                     <a.icon className="h-5 w-5" />
                   </span>
                   <span>
@@ -324,7 +282,7 @@ export default async function HomePage() {
                     >
                       <span className="absolute left-1 top-1 h-1.5 w-1.5 rounded-full bg-white/60" />
                     </span>
-                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-orange">
+                    <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-orange">
                       <Megaphone className="h-3.5 w-3.5" /> Advisory
                     </p>
                     <p className="mt-2 font-bold leading-snug text-navy group-hover:text-royal">
@@ -345,7 +303,7 @@ export default async function HomePage() {
                 >
                   <span className="absolute left-1 top-1 h-1.5 w-1.5 rounded-full bg-white/70" />
                 </span>
-                <p className="text-[11px] font-bold uppercase tracking-wider text-marigold">
+                <p className="text-xs font-bold uppercase tracking-wider text-marigold">
                   Looking for something?
                 </p>
                 <div className="mt-3 flex flex-col gap-2.5">
@@ -411,9 +369,9 @@ export default async function HomePage() {
               <Link
                 key={c.label}
                 href={`/youth?category=${encodeURIComponent(c.label)}`}
-                className="tag gap-1.5 bg-cream px-4 py-2 text-sm text-navy transition-all hover:-translate-y-0.5 hover:bg-sand hover:shadow-card"
+                className="tag gap-1.5 border border-navy/10 bg-white px-4 py-2 text-sm text-navy transition-colors hover:border-orange"
               >
-                <c.icon className="h-4 w-4 text-orange" />
+                <c.icon className="h-4 w-4 text-royal" />
                 {c.label}
               </Link>
             ))}
@@ -434,20 +392,29 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SHOWCASE — parallax band with a single call to action */}
+      {/* SHOWCASE — real Batangas photography under a navy duotone */}
       <section
-        className="parallax relative"
-        style={{ backgroundImage: `url(${SHOWCASE_IMAGE})` }}
+        className="relative overflow-hidden bg-navy"
         aria-labelledby="get-involved-heading"
       >
-        <div className="absolute inset-0 bg-navy/75" />
-        <div className="container-site relative flex min-h-[46vh] flex-col items-center justify-center py-20 text-center text-white">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-marigold">
+        <Image
+          src="/assets/showcase-batangas.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-navy/60 mix-blend-multiply"
+        />
+        <div className="container-site relative flex min-h-[46vh] flex-col items-start justify-center py-20">
+          <p className="text-[13px] font-semibold text-marigold">
             Para sa kabataang Batangueño
           </p>
           <h2
             id="get-involved-heading"
-            className="display-heading mt-3 max-w-2xl text-3xl sm:text-4xl"
+            className="mt-3 max-w-xl font-display text-3xl font-bold tracking-tight text-white sm:text-4xl"
           >
             Your voice belongs in city hall
           </h2>
@@ -455,7 +422,10 @@ export default async function HomePage() {
             Proposed ordinances are open for public comment right now. Read
             them, react, and help shape the city you live in.
           </p>
-          <Link href="/youth/get-involved" className="btn-primary mt-7 px-7 py-3">
+          <Link
+            href="/youth/get-involved"
+            className="btn-primary mt-7 px-7 py-3"
+          >
             Comment on proposals <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
