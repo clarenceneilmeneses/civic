@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+.env*.local
+.env
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+
+# local reference material (not part of the app)
+screencapture-*.pdf
+/batangas-seal.png
+/ub-logo.png

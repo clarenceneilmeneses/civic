@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-slate-800 antialiased;
+  }
+  ::selection {
+    @apply bg-marigold/60 text-navy;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-azure ring-offset-2;
+  }
+}
+
+@layer components {
+  .display-heading {
+    @apply font-display uppercase tracking-[0.12em];
+  }
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-xl bg-white shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-orange text-white hover:bg-brick;
+  }
+  .btn-secondary {
+    @apply btn bg-royal text-white hover:bg-navy;
+  }
+  .btn-outline {
+    @apply btn border border-slate-300 bg-white text-navy hover:border-azure hover:text-royal;
+  }
+  .btn-ghost {
+    @apply btn text-royal hover:bg-sky/40;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-azure focus:outline-none focus:ring-2 focus:ring-azure/40;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-navy;
+  }
+  .tag {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  /* Full-bleed showcase bands with a simple scroll-parallax effect.
+     background-attachment: fixed is unreliable on iOS, so mobile falls back
+     to a normal cover background. */
+  .parallax {
+    background-size: cover;
+    background-position: center;
+  }
+  @media (min-width: 768px) {
+    .parallax {
+      background-attachment: fixed;
+    }
+  }
+
+  /* Scrollable but without a visible scrollbar */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gentle vertical bob for decorative elements */
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  /* Infinite horizontal marquee (content must be duplicated once) */
+  .ticker-track {
+    animation: ticker 35s linear infinite;
+  }
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Pulsing emergency ring */
+  .animate-pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .ticker-track,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}
+
+/* Rich text (Tiptap output + editor) */
+.prose-civic {
+  @apply text-slate-700 leading-relaxed;
+}
+.prose-civic > * + * {
+  margin-top: 0.9em;
+}
+.prose-civic h2 {
+  @apply mt-8 font-display text-2xl uppercase tracking-wide text-navy;
+}
+.prose-civic h3 {
+  @apply mt-6 text-lg font-bold text-navy;
+}
+.prose-civic a {
+  @apply font-medium text-azure underline underline-offset-2 hover:text-royal;
+}
+.prose-civic ul {
+  @apply list-disc pl-6;
+}
+.prose-civic ol {
+  @apply list-decimal pl-6;
+}
+.prose-civic li + li {
+  margin-top: 0.35em;
+}
+.prose-civic blockquote {
+  @apply border-l-4 border-marigold bg-cream/60 px-4 py-2 italic;
+}
+.prose-civic img {
+  @apply my-4 rounded-xl;
+  max-width: 100%;
+  height: auto;
+}
+.prose-civic strong {
+  @apply text-slate-900;
+}
+
+/* Tiptap editor chrome */
+.tiptap {
+  @apply min-h-[220px] rounded-b-lg border border-t-0 border-slate-300 bg-white px-4 py-3 focus:outline-none;
+}
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none float-left h-0 text-slate-400;
+}
