@@ -16,9 +16,9 @@ const TONE_SECTION: Record<Tone, string> = {
 
 const TONE_TITLE: Record<Tone, string> = {
   neutral: "font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl",
-  // Playful, oversized outlined display title
+  // Playful, oversized display title
   youth:
-    "font-display text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl [-webkit-text-stroke:2px_#14477D]",
+    "font-display text-5xl font-extrabold tracking-tight text-navy sm:text-6xl",
   // Restrained, lighter weight
   transparency:
     "font-display text-4xl font-medium tracking-tight text-navy sm:text-5xl",

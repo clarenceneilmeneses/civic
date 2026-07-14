@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
+  BatteryFull,
   CalendarDays,
   FileText,
   GraduationCap,
@@ -13,9 +14,9 @@ import {
   Scale,
   Sparkles,
   Trophy,
+  Wifi,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import BrandMark from "@/components/BrandMark";
 import StreetPattern from "@/components/StreetPattern";
 import WeatherWidget from "@/components/WeatherWidget";
 import HotlinesStrip from "@/components/HotlinesStrip";
@@ -110,14 +111,12 @@ export default async function HomePage() {
     { value: "24/7", label: "emergency hotlines" },
   ];
 
-  const nextEvent = events?.[0] ?? null;
-
   return (
     <>
       {/* HERO — clean map-poster style: white canvas + faint street lines */}
       <section className="relative overflow-hidden bg-white">
         <StreetPattern opacity={0.35} />
-        <div className="container-site relative grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="container-site relative grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             {/* Official partnership badge */}
             <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-navy/10 bg-white py-1.5 pl-1.5 pr-5">
@@ -186,7 +185,7 @@ export default async function HomePage() {
                   key={s.label}
                   className="flex flex-col border-l-2 border-marigold pl-3"
                 >
-                  <dt className="order-2 text-xs font-medium text-slate-500">
+                  <dt className="order-2 mt-1 text-sm font-semibold leading-snug text-slate-600">
                     {s.label}
                   </dt>
                   <dd className="order-1 font-display text-4xl font-bold tracking-tight text-navy">
@@ -197,27 +196,68 @@ export default async function HomePage() {
             </dl>
           </div>
 
-          {/* Brand pin — static, with one real floating chip. Desktop only. */}
-          <div className="relative hidden items-center justify-center lg:flex">
-            <BrandMark className="h-80 w-80 drop-shadow-xl" title="" />
-            {nextEvent && (
-              <div
-                aria-hidden="true"
-                className="animate-float absolute -left-6 top-8 flex items-center gap-2.5 rounded-2xl border border-navy/10 bg-white px-4 py-3 shadow-lift"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky/30 text-royal">
-                  <CalendarDays className="h-4 w-4" />
-                </span>
-                <span className="max-w-[190px]">
-                  <span className="block truncate text-xs font-bold text-navy">
-                    {nextEvent.title}
-                  </span>
-                  <span className="block text-xs font-medium text-slate-500">
-                    {formatDate(nextEvent.starts_at)}
-                  </span>
-                </span>
+          {/* Device duo — live captures of the Youth Hub feed. Desktop only. */}
+          <div className="relative hidden pb-10 pr-3 lg:block">
+            {/* laptop */}
+            <div className="relative">
+              <div className="mx-[6%] rounded-[1rem] bg-gradient-to-b from-slate-700 to-slate-950 p-[2px] shadow-lift">
+                <div className="relative rounded-[0.9rem] bg-slate-900 px-[5px] pb-[5px] pt-3">
+                  {/* camera */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-1/2 top-[4px] h-1 w-1 -translate-x-1/2 rounded-full bg-slate-600 ring-1 ring-slate-700"
+                  />
+                  <div className="overflow-hidden rounded-md bg-white">
+                    <Image
+                      src="/assets/preview-laptop.png"
+                      alt="Youth Hub event listings shown on a laptop"
+                      width={1440}
+                      height={900}
+                      priority
+                      className="block w-full"
+                    />
+                  </div>
+                </div>
               </div>
-            )}
+              {/* aluminum deck */}
+              <div className="relative h-[11px] rounded-b-[0.9rem] bg-gradient-to-b from-slate-100 via-slate-300 to-slate-400 shadow-md">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-1/2 top-0 h-[5px] w-[13%] -translate-x-1/2 rounded-b-md bg-slate-400/80"
+                />
+              </div>
+            </div>
+
+            {/* iphone */}
+            <div className="absolute -bottom-9 -right-2 z-10 w-[26%] min-w-[112px] rotate-2">
+              <div className="rounded-[1.9rem] bg-gradient-to-b from-slate-700 to-slate-950 p-[2px] shadow-lift">
+                <div className="rounded-[1.8rem] bg-slate-900 p-[3px]">
+                  <div className="overflow-hidden rounded-[1.6rem] bg-white">
+                    {/* status bar */}
+                    <div className="relative flex items-center justify-between px-3 pb-0.5 pt-1.5 text-navy">
+                      <span className="text-[8px] font-bold leading-none">
+                        9:41
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-1/2 top-1.5 h-2.5 w-9 -translate-x-1/2 rounded-full bg-slate-900"
+                      />
+                      <span className="flex items-center gap-0.5">
+                        <Wifi className="h-2 w-2" />
+                        <BatteryFull className="h-2.5 w-2.5" />
+                      </span>
+                    </div>
+                    <Image
+                      src="/assets/preview-phone.png"
+                      alt="Youth Hub event listings shown on a phone"
+                      width={1082}
+                      height={2202}
+                      className="block w-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -230,14 +270,14 @@ export default async function HomePage() {
                   href={a.href}
                   className="card group flex h-full items-start gap-4 p-5 transition-shadow hover:shadow-lift"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky/30 text-royal transition-colors group-hover:bg-orange group-hover:text-white">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-navy text-white transition-colors group-hover:bg-orange">
                     <a.icon className="h-5 w-5" />
                   </span>
                   <span>
                     <span className="block font-bold text-navy group-hover:text-royal">
                       {a.title}
                     </span>
-                    <span className="mt-0.5 block text-sm text-slate-500">
+                    <span className="mt-0.5 block text-sm text-slate-600">
                       {a.desc}
                     </span>
                   </span>
@@ -351,7 +391,7 @@ export default async function HomePage() {
       </section>
 
       {/* UPCOMING EVENTS */}
-      <section className="bg-white">
+      <section id="find-your-thing" className="bg-white">
         <div className="container-site py-16">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -407,6 +447,11 @@ export default async function HomePage() {
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-navy/60 mix-blend-multiply"
+        />
+        {/* scrim — guarantees the white copy stays readable over the sky */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/40 to-transparent"
         />
         <div className="container-site relative flex min-h-[46vh] flex-col items-start justify-center py-20">
           <p className="text-[13px] font-semibold text-marigold">

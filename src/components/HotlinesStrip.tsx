@@ -59,35 +59,37 @@ export default async function HotlinesStrip() {
             </div>
           </a>
 
-          {/* Other emergency lines */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {others.map((h) => (
-              <div
-                key={h.id}
-                className="flex flex-col rounded-2xl bg-white/[0.07] p-5 transition-colors hover:bg-white/[0.12]"
-              >
-                <p className="text-sm font-bold">{h.name}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {h.numbers.map((n) => (
-                    <a
-                      key={n}
-                      href={`tel:${n.replace(/[^\d+]/g, "")}`}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-bold tracking-wide text-marigold transition-colors hover:bg-marigold hover:text-navy"
-                    >
-                      <Phone className="h-3.5 w-3.5" /> {n}
-                    </a>
-                  ))}
+          {/* Other emergency lines — strict 2x2 grid, equal-height cards */}
+          <div className="flex flex-col gap-4">
+            <div className="grid flex-1 gap-4 sm:grid-cols-2 sm:auto-rows-fr">
+              {others.map((h) => (
+                <div
+                  key={h.id}
+                  className="flex flex-col rounded-2xl bg-white/[0.07] p-5 transition-colors hover:bg-white/[0.12]"
+                >
+                  <p className="text-sm font-bold">{h.name}</p>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-3">
+                    {h.numbers.map((n) => (
+                      <a
+                        key={n}
+                        href={`tel:${n.replace(/[^\d+]/g, "")}`}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-bold tracking-wide text-marigold transition-colors hover:bg-marigold hover:text-navy"
+                      >
+                        <Phone className="h-3.5 w-3.5" /> {n}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-            {others.length === 0 && (
-              <p className="rounded-2xl bg-white/[0.07] p-5 text-sm text-sky sm:col-span-2">
-                City hotline numbers will be posted here.
-              </p>
-            )}
+              ))}
+              {others.length === 0 && (
+                <p className="rounded-2xl bg-white/[0.07] p-5 text-sm text-sky sm:col-span-2">
+                  City hotline numbers will be posted here.
+                </p>
+              )}
+            </div>
             <Link
               href="/contact/hotlines"
-              className="group flex items-center justify-between rounded-2xl border border-white/15 p-5 text-sm font-bold transition-colors hover:bg-white/[0.07] sm:col-span-2"
+              className="group flex items-center justify-between rounded-2xl border border-white/15 p-5 text-sm font-bold transition-colors hover:bg-white/[0.07]"
             >
               Health &amp; city service hotlines
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
