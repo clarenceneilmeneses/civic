@@ -9,7 +9,9 @@ import StreetPattern from "./StreetPattern";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <article className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
+    // h-full so the card still fills its grid row when a wrapper (e.g. a scroll
+    // reveal) sits between it and the grid.
+    <article className="card group flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <Link href={`/news/${post.slug}`} className="flex h-full flex-col">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/20">
           {post.cover_image ? (
@@ -52,7 +54,7 @@ export function PostCard({ post }: { post: Post }) {
 export function EventCard({ event }: { event: CityEvent }) {
   const d = new Date(event.starts_at);
   return (
-    <article className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
+    <article className="card group flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <Link href={`/youth/events/${event.slug}`} className="flex h-full flex-col">
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-sky/20">
           {event.cover_image ? (

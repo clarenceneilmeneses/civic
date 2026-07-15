@@ -31,6 +31,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <head>
+        {/* Scroll reveals start hidden and are unhidden by IntersectionObserver.
+            Without JS that never happens, so the content must default to shown. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+      </head>
       <body className="flex min-h-screen flex-col font-sans">{children}</body>
     </html>
   );
