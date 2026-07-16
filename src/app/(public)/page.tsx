@@ -66,13 +66,8 @@ export default async function HomePage() {
   const supabase = createClient();
   const nowIso = new Date().toISOString();
 
-  const [
-    { data: news },
-    { data: announcements },
-    { data: events },
-    { count: upcomingCount },
-    { count: openProposals },
-  ] = await Promise.all([
+  const [{ data: news }, { data: announcements }, { data: events }] =
+    await Promise.all([
     supabase
       .from("posts")
       .select("*")
@@ -94,24 +89,7 @@ export default async function HomePage() {
       .gte("starts_at", nowIso)
       .order("starts_at")
       .limit(3),
-    supabase
-      .from("events")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "published")
-      .gte("starts_at", nowIso),
-    supabase
-      .from("proposals")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "published")
-      .eq("proposal_status", "open"),
   ]);
-
-  const stats = [
-    { value: String(upcomingCount ?? 0), label: "upcoming events" },
-    { value: String(openProposals ?? 0), label: "proposals open for comment" },
-    { value: "105", label: "barangays, one city" },
-    { value: "24/7", label: "emergency hotlines" },
-  ];
 
   return (
     <>
@@ -184,22 +162,6 @@ export default async function HomePage() {
               </Link>
             </div>
 
-            {/* Live stats */}
-            <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="flex flex-col border-l-2 border-marigold pl-3"
-                >
-                  <dt className="order-2 mt-1 text-sm font-semibold leading-snug text-slate-600">
-                    {s.label}
-                  </dt>
-                  <dd className="order-1 font-display text-4xl font-bold tracking-tight text-navy">
-                    {s.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           {/* Device duo — live captures of the Youth Hub feed. Desktop only. */}

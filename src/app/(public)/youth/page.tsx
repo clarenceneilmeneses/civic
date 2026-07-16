@@ -18,7 +18,7 @@ import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/PageHeader";
 import { EventCard } from "@/components/cards";
 import { EmptyState, Tag } from "@/components/ui";
-import { formatDateRange } from "@/lib/utils";
+import { eventCountdown, formatDateRange } from "@/lib/utils";
 import type { CityEvent } from "@/lib/database.types";
 
 export const metadata: Metadata = {
@@ -37,6 +37,7 @@ const CATEGORIES = [
 ] as const;
 
 function FeaturedEvent({ event }: { event: CityEvent }) {
+  const countdown = eventCountdown(event.starts_at);
   return (
     <Link
       href={`/youth/events/${event.slug}`}
@@ -57,7 +58,9 @@ function FeaturedEvent({ event }: { event: CityEvent }) {
       <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent" />
       <div className="relative p-6 text-white sm:p-8">
         <div className="flex flex-wrap items-center gap-2">
-          <Tag className="bg-marigold text-navy">Up next</Tag>
+          <Tag className="bg-marigold text-navy">
+            {countdown ? `Up next · ${countdown}` : "Up next"}
+          </Tag>
           <Tag className="bg-white/20 text-white">{event.category}</Tag>
         </div>
         <h2 className="mt-3 max-w-lg font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">

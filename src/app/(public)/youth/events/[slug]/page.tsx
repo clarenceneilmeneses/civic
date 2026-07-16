@@ -11,8 +11,10 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import RsvpButton from "@/components/RsvpButton";
+import AddToCalendarButton from "@/components/AddToCalendarButton";
+import ShareButton from "@/components/ShareButton";
 import { Tag } from "@/components/ui";
-import { formatDateRange, stripHtml, truncate } from "@/lib/utils";
+import { eventCountdown, formatDateRange } from "@/lib/utils";
 
 export async function generateMetadata({
   params,
@@ -50,6 +52,7 @@ export default async function EventPage({
   if (!event) notFound();
 
   const isPast = new Date(event.starts_at) < new Date(Date.now() - 24 * 3600 * 1000);
+  const countdown = isPast ? null : eventCountdown(event.starts_at);
 
   return (
     <article className="container-site max-w-4xl py-12">
@@ -75,6 +78,7 @@ export default async function EventPage({
 
       <div className="mt-6 flex items-center gap-2">
         <Tag colorKey={event.category}>{event.category}</Tag>
+        {countdown && <Tag className="bg-marigold/50 text-navy">{countdown}</Tag>}
         {isPast && <Tag className="bg-slate-200 text-slate-600">Past event</Tag>}
       </div>
       <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
@@ -98,6 +102,16 @@ export default async function EventPage({
             <span>
               <span className="block font-bold text-navy">Where</span>
               {event.venue}
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  `${event.venue}, Batangas City`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-0.5 block text-xs font-semibold text-royal hover:text-navy"
+              >
+                Get directions →
+              </a>
             </span>
           </p>
         )}
@@ -122,10 +136,23 @@ export default async function EventPage({
       </div>
 
       <div className="mt-6">
-        <RsvpButton
-          eventId={event.id}
-          registrationOpen={event.registration_open && !isPast}
-        />
+        <div className="flex flex-wrap items-center gap-3">
+          <RsvpButton
+            eventId={event.id}
+            registrationOpen={event.registration_open && !isPast}
+          />
+          {!isPast && (
+            <AddToCalendarButton
+              title={event.title}
+              description={event.summary}
+              location={event.venue}
+              startsAt={event.starts_at}
+              endsAt={event.ends_at}
+              slug={event.slug}
+            />
+          )}
+          <ShareButton title={event.title} text={event.summary ?? undefined} />
+        </div>
         <p className="mt-2 text-xs text-slate-500">
           RSVPs need a free account — signing up takes under a minute.
         </p>

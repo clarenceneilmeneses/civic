@@ -10,6 +10,12 @@ import {
   Users,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import {
+  MonthlyActivityChart,
+  RsvpChart,
+  type MonthBucket,
+  type RsvpRow,
+} from "@/components/admin/DashboardCharts";
 import { formatDateTime } from "@/lib/utils";
 
 async function count(
@@ -34,6 +40,26 @@ async function count(
 export default async function AdminDashboard() {
   const supabase = createClient();
 
+  // Last 6 calendar months, oldest first.
+  const now = new Date();
+  const months: (MonthBucket & { key: string })[] = Array.from(
+    { length: 6 },
+    (_, i) => {
+      const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
+      return {
+        key: `${d.getFullYear()}-${d.getMonth()}`,
+        label: d.toLocaleDateString("en-PH", { month: "short" }),
+        posts: 0,
+        events: 0,
+      };
+    }
+  );
+  const sinceIso = new Date(
+    now.getFullYear(),
+    now.getMonth() - 5,
+    1
+  ).toISOString();
+
   const [
     posts,
     events,
@@ -45,6 +71,9 @@ export default async function AdminDashboard() {
     rsvps,
     { data: recentMessages },
     { data: recentComments },
+    { data: postDates },
+    { data: eventDates },
+    { data: upcomingEvents },
   ] = await Promise.all([
     count(supabase, "posts"),
     count(supabase, "events"),
@@ -64,7 +93,38 @@ export default async function AdminDashboard() {
       .select("id, body, approved, created_at, profiles(full_name)")
       .order("created_at", { ascending: false })
       .limit(5),
+    // Chart data — column-only selects and a server-side aggregate; cheap.
+    supabase.from("posts").select("created_at").gte("created_at", sinceIso),
+    supabase.from("events").select("created_at").gte("created_at", sinceIso),
+    supabase
+      .from("events")
+      .select("title, capacity, event_registrations(count)")
+      .eq("status", "published")
+      .gte("starts_at", now.toISOString())
+      .order("starts_at")
+      .limit(5),
   ]);
+
+  for (const { list, field } of [
+    { list: postDates, field: "posts" as const },
+    { list: eventDates, field: "events" as const },
+  ]) {
+    for (const row of list ?? []) {
+      const d = new Date(row.created_at);
+      const bucket = months.find(
+        (m) => m.key === `${d.getFullYear()}-${d.getMonth()}`
+      );
+      if (bucket) bucket[field] += 1;
+    }
+  }
+
+  const rsvpRows: RsvpRow[] = (upcomingEvents ?? []).map((e) => ({
+    title: e.title,
+    capacity: e.capacity,
+    count:
+      (e.event_registrations as unknown as { count: number }[])?.[0]?.count ??
+      0,
+  }));
 
   const stats = [
     { label: "News & announcements", value: posts, href: "/admin/news", icon: Newspaper },
@@ -104,6 +164,15 @@ export default async function AdminDashboard() {
             </span>
           </Link>
         ))}
+      </div>
+
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+        <section className="card p-5">
+          <MonthlyActivityChart months={months} />
+        </section>
+        <section className="card p-5">
+          <RsvpChart events={rsvpRows} />
+        </section>
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">

@@ -1,3 +1,7 @@
+"use client";
+
+import { useId } from "react";
+
 // Custom brand icon: a rounded map pin filled with a stained-glass mosaic of
 // city blocks (palette blues/oranges/yellows) and a yellow plaza ring near the
 // top — inspired by minimalist map-art posters of Batangas City.
@@ -8,6 +12,11 @@ export default function BrandMark({
   className?: string;
   title?: string;
 }) {
+  // The clip id must be unique per instance: browsers resolve url(#id) against
+  // the first match in the document, and if that copy sits in a display:none
+  // subtree (e.g. the admin mobile bar on desktop) the clip silently fails and
+  // the mosaic renders unclipped.
+  const clipId = `pin-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   return (
     <svg
       viewBox="0 0 64 64"
@@ -16,13 +25,13 @@ export default function BrandMark({
       aria-label={title}
     >
       <defs>
-        <clipPath id="pinClip">
+        <clipPath id={clipId}>
           <path d="M32 3C18.7 3 9 12.9 9 25.6 9 41.5 28.2 58.3 31 60.6a1.6 1.6 0 0 0 2 0C35.8 58.3 55 41.5 55 25.6 55 12.9 45.3 3 32 3Z" />
         </clipPath>
       </defs>
 
       {/* mosaic city blocks, clipped to the pin */}
-      <g clipPath="url(#pinClip)">
+      <g clipPath={`url(#${clipId})`}>
         <rect x="6" y="0" width="52" height="64" fill="#A8D5EE" />
         <polygon points="6,0 34,0 30,14 6,18" fill="#F6B93B" />
         <polygon points="34,0 58,0 58,16 42,18 38,10" fill="#4D9FD6" />

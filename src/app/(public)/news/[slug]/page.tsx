@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import ShareButton from "@/components/ShareButton";
 import { Tag } from "@/components/ui";
 import { formatDate, stripHtml, truncate } from "@/lib/utils";
 
@@ -67,10 +68,17 @@ export default async function ArticlePage({
       <h1 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
         {post.title}
       </h1>
-      <p className="mt-3 text-sm font-medium text-slate-500">
-        Published {formatDate(post.published_at ?? post.created_at)} · City
-        Government of Batangas
-      </p>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-medium text-slate-500">
+          Published {formatDate(post.published_at ?? post.created_at)} · City
+          Government of Batangas
+        </p>
+        <ShareButton
+          title={post.title}
+          text={post.excerpt ?? undefined}
+          className="px-3.5 py-1.5 text-xs"
+        />
+      </div>
       {post.cover_image && (
         <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl bg-sky/30">
           <Image

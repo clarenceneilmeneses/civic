@@ -125,26 +125,27 @@ export default function SiteHeader() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="ml-auto hidden items-center gap-0.5 lg:flex" aria-label="Main">
+        <nav
+          className="ml-auto hidden items-center gap-0.5 rounded-full bg-navy/5 p-1 lg:flex"
+          aria-label="Main"
+        >
           <Link
             href="/"
-            aria-label="Home"
-            title="Home"
             className={cn(
-              "rounded-lg p-2.5 hover:bg-sky/20",
-              pathname === "/" && "bg-sky/25"
+              "rounded-full px-3.5 py-1.5 text-sm font-medium hover:bg-white/60",
+              pathname === "/" && "bg-white shadow-sm"
             )}
           >
-            <Home className="h-4 w-4" />
+            Home
           </Link>
           {NAV.map((item) =>
             item.children ? (
               <div key={item.label} className="relative" ref={dropdownRef}>
                 <button
                   className={cn(
-                    "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20",
+                    "flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium hover:bg-white/60",
                     item.activePrefixes?.some((p) => pathname.startsWith(p)) &&
-                      "underline decoration-orange decoration-2 underline-offset-8"
+                      "bg-white shadow-sm"
                   )}
                   aria-expanded={dropdownOpen}
                   onClick={() => setDropdownOpen((v) => !v)}
@@ -171,11 +172,11 @@ export default function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-lg px-3 py-2 text-sm font-medium hover:bg-sky/20",
+                  "rounded-full px-3.5 py-1.5 text-sm font-medium hover:bg-white/60",
                   (item.href === "/"
                     ? pathname === "/"
                     : pathname.startsWith(item.href)) &&
-                    "underline decoration-orange decoration-2 underline-offset-8"
+                    "bg-white shadow-sm"
                 )}
               >
                 {item.label}

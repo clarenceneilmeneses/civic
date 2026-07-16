@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, MapPin, Users } from "lucide-react";
 import type { CityEvent, Post } from "@/lib/database.types";
-import { formatDate, formatDateRange } from "@/lib/utils";
+import { eventCountdown, formatDate, formatDateRange } from "@/lib/utils";
 import { Tag } from "./ui";
 import BrandMark from "./BrandMark";
 import StreetPattern from "./StreetPattern";
@@ -53,6 +53,7 @@ export function PostCard({ post }: { post: Post }) {
 
 export function EventCard({ event }: { event: CityEvent }) {
   const d = new Date(event.starts_at);
+  const countdown = eventCountdown(event.starts_at);
   return (
     <article className="card group flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <Link href={`/youth/events/${event.slug}`} className="flex h-full flex-col">
@@ -80,8 +81,11 @@ export function EventCard({ event }: { event: CityEvent }) {
           </div>
         </div>
         <div className="flex flex-1 flex-col gap-2 p-5">
-          <div>
+          <div className="flex flex-wrap items-center gap-2">
             <Tag colorKey={event.category}>{event.category}</Tag>
+            {countdown && (
+              <Tag className="bg-marigold/50 text-navy">{countdown}</Tag>
+            )}
           </div>
           <h3 className="font-bold leading-snug text-navy group-hover:text-royal">
             {event.title}

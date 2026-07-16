@@ -26,6 +26,32 @@ export function StatusBadge({ status }: { status: string }) {
   );
 }
 
+// Summary tiles derived from the already-fetched rows — no extra queries.
+// "Total" caps at the 200-row fetch limit, hence the "+".
+function deriveStats(rows: Row[]) {
+  const atCap = rows.length >= 200;
+  const stats: { label: string; value: string }[] = [
+    { label: "Total", value: atCap ? "200+" : String(rows.length) },
+  ];
+  if (rows.length > 0 && "status" in rows[0]) {
+    const published = rows.filter((r) => r.status === "published").length;
+    stats.push(
+      { label: "Published", value: String(published) },
+      { label: "Drafts", value: String(rows.length - published) }
+    );
+  }
+  if (rows.length > 0 && "created_at" in rows[0]) {
+    const monthAgo = Date.now() - 30 * 24 * 3600 * 1000;
+    stats.push({
+      label: "Added last 30 days",
+      value: String(
+        rows.filter((r) => new Date(r.created_at).getTime() >= monthAgo).length
+      ),
+    });
+  }
+  return stats;
+}
+
 export default function EntityList({
   table,
   title,
@@ -51,6 +77,11 @@ export default function EntityList({
   const [rows, setRows] = useState<Row[] | null>(
     () => cacheGet<Row[]>(`list:${table}`) ?? null
   );
+  // Unfiltered snapshot backing the summary tiles, so searching doesn't
+  // make the totals jump around.
+  const [baseRows, setBaseRows] = useState<Row[] | null>(
+    () => cacheGet<Row[]>(`list:${table}`) ?? null
+  );
   const [q, setQ] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -73,7 +104,10 @@ export default function EntityList({
       else {
         setError(null);
         setRows(data ?? []);
-        if (!q.trim()) cacheSet(`list:${table}`, data ?? []);
+        if (!q.trim()) {
+          setBaseRows(data ?? []);
+          cacheSet(`list:${table}`, data ?? []);
+        }
       }
     }, q ? 250 : 0);
     return () => {
@@ -94,6 +128,19 @@ export default function EntityList({
           <Plus className="h-4 w-4" /> New
         </Link>
       </div>
+
+      {baseRows !== null && (
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {deriveStats(baseRows).map((s) => (
+            <div key={s.label} className="card px-4 py-3">
+              <p className="font-display text-xl font-semibold text-navy">
+                {s.value}
+              </p>
+              <p className="text-xs font-medium text-slate-500">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {searchColumns.length > 0 && (
         <div className="relative mt-5 max-w-md">

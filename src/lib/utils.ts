@@ -44,6 +44,19 @@ export function formatDateRange(start: string, end: string | null): string {
   return `${s.toLocaleDateString("en-PH", { month: "short", day: "numeric" })} – ${e.toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" })}`;
 }
 
+// "Today" / "Tomorrow" / "In n days" for events within a week, else null.
+export function eventCountdown(startsAt: string): string | null {
+  const startOfDay = (d: Date) =>
+    new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const days = Math.round(
+    (startOfDay(new Date(startsAt)) - startOfDay(new Date())) / 86_400_000
+  );
+  if (days < 0 || days > 7) return null;
+  if (days === 0) return "Today";
+  if (days === 1) return "Tomorrow";
+  return `In ${days} days`;
+}
+
 export function stripHtml(html: string | null | undefined): string {
   if (!html) return "";
   return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();

@@ -151,7 +151,7 @@ export default function AdminSidebar({
                   "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium",
                   collapsed && "lg:justify-center lg:px-0 lg:py-2.5",
                   active
-                    ? "bg-white/10 text-white shadow-[inset_3px_0_0_0_#E8762C]"
+                    ? "bg-white/10 text-white"
                     : "text-slate-300 hover:bg-white/10 hover:text-white"
                 )}
               >
